@@ -18,7 +18,7 @@ public class TransacoesTest {
      */
     @Test
     void transacaoSimples(){
-       transacaoService.executar();
+        transacaoService.executar();
     }
 
     @Test
