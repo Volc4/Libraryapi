@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("Livros")
+@RequestMapping("livros")
 @RequiredArgsConstructor
 public class LivroController implements GenericController {
 
