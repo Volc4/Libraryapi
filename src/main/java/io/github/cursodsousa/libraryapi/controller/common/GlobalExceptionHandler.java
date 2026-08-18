@@ -7,6 +7,7 @@ import io.github.cursodsousa.libraryapi.exception.OperacaoNaoPermitidaException;
 import io.github.cursodsousa.libraryapi.exception.RegistroDuplicadoException;
 import jakarta.validation.executable.ValidateOnExecution;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -51,6 +52,11 @@ public class GlobalExceptionHandler {
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 e.getMessage(),
                 List.of(new ErroCampo(e.getCampo(), e.getMessage())));
+    }
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErroResposta handleAcessDeniedException(AccessDeniedException e){
+        return new ErroResposta(HttpStatus.FORBIDDEN.value(), "Acesso Negado",List.of());
     }
 
     @ExceptionHandler(RuntimeException.class)
